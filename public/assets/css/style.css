@@ -1,0 +1,458 @@
+/* assets/css/style.css */
+
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+  /* Bạn có thể đổi mã màu ở đây để thay đổi toàn bộ web */
+  --primary-color: #0d6efd; /* Màu chủ đạo (Xanh Bootstrap) */
+  --secondary-color: #ffc107; /* Màu phụ (Vàng) */
+  --text-color: #333; /* Màu chữ chính */
+  --text-light: #888; /* Màu chữ nhạt */
+  --light-bg: #f8f9fa; /* Màu nền nhạt */
+  --dark-color: #2d3436; /* Màu tối/Footer */
+  --success-color: #27ae60;
+  --danger-color: #dc3545;
+}
+
+/* Nếu bạn có file css phụ, hãy import ở đây, nếu không thì bỏ dòng dưới */
+/* @import url("detail-booking.css"); */
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
+}
+
+/* =========================================
+   2. HEADER & NAVIGATION
+   ========================================= */
+.header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.top-bar {
+  background: var(--dark-color);
+  color: white;
+  padding: 8px 0;
+  font-size: 13px;
+}
+
+.top-bar .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+}
+
+.nav-menu a {
+  font-weight: 500;
+  color: var(--dark-color);
+  font-size: 16px;
+}
+
+.nav-menu a:hover {
+  color: var(--primary-color);
+}
+
+/* Dropdown Menu */
+/* =========================================
+   FIX LỖI DROPDOWN MENU
+   ========================================= */
+
+/* 1. Chỉ áp dụng style custom cho Menu chính (Navbar) */
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 10px 0;
+  min-width: 200px;
+  display: none;
+  z-index: 1000;
+  border-radius: 5px;
+  border: none; /* Bỏ border mặc định nếu có */
+}
+
+/* Hiệu ứng Hover chỉ dành cho Desktop và Menu chính */
+@media (min-width: 992px) {
+  .navbar .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+.navbar .dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+}
+
+.navbar .dropdown-menu li a:hover {
+  background: var(--light-bg);
+  color: var(--primary-color);
+}
+
+/* 2. Reset cho Menu User (Top Bar) để dùng chuẩn Bootstrap */
+.top-auth .dropdown-menu {
+  /* Đảm bảo không bị dính style của navbar */
+  position: absolute; /* Bootstrap mặc định */
+  left: auto !important; /* Để class dropdown-menu-end hoạt động */
+  right: 0 !important;
+  margin-top: 0;
+  display: none; /* Ẩn mặc định, để Bootstrap JS xử lý click */
+}
+
+/* Khi click vào thì Bootstrap sẽ thêm class .show, ta cần đảm bảo nó hiện ra */
+.top-auth .dropdown-menu.show {
+  display: block;
+}
+
+/* Fix lỗi hover dropdown trên desktop */
+@media (min-width: 992px) {
+  .dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+  }
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.dropdown-menu li a:hover {
+  background: var(--light-bg);
+  color: var(--primary-color);
+}
+
+/* =========================================
+   3. COMPONENTS (BUTTONS, CARDS...)
+   ========================================= */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #0b5ed7; /* Darker blue */
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+}
+
+/* Hover Effects */
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* =========================================
+   4. HOMEPAGE SECTIONS
+   ========================================= */
+
+/* Hero Slider */
+.hero-slider {
+  position: relative;
+  height: 500px;
+  background-color: #333;
+  overflow: hidden;
+}
+.hero-slider .slide {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.hero-slider .slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+.slide-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+.slide-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Search Box */
+.search-section {
+  margin-top: -50px;
+  position: relative;
+  z-index: 10;
+  padding-bottom: 50px;
+}
+.search-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.btn-search {
+  background: var(--secondary-color);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 100%;
+}
+.btn-search:hover {
+  background: #ffca2c;
+}
+
+/* Tour Cards */
+.tour-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: 0.3s;
+  height: 100%;
+  border: none;
+}
+.tour-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+.tour-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.tour-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+.tour-card:hover .tour-image img {
+  transform: scale(1.1);
+}
+
+/* Reviews */
+.reviews-section {
+  padding: 60px 0;
+  background: #fff;
+}
+.review-card {
+  background: #f8f9fa;
+  padding: 25px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+
+/* =========================================
+   5. TOUR DETAIL PAGE
+   ========================================= */
+.tour-detail-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: var(--text-color);
+}
+
+/* Gallery */
+.main-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.thumbnail-images {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  overflow-x: auto;
+}
+.thumbnail-images img {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0.6;
+  border: 2px solid transparent;
+}
+.thumbnail-images img:hover {
+  opacity: 1;
+  border-color: var(--primary-color);
+}
+
+/* Sticky Booking Box */
+.sticky-box {
+  position: sticky;
+  top: 90px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  z-index: 99;
+}
+
+.price-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--danger-color);
+}
+
+.btn-booking {
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  padding: 15px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+.btn-booking:hover {
+  background: #0b5ed7;
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+.footer {
+  background: var(--dark-color);
+  color: white;
+  padding: 60px 0 20px;
+  margin-top: auto;
+}
+
+/* =========================================
+   7. UTILITIES & ANIMATION
+   ========================================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Responsive fixes */
+@media (max-width: 991px) {
+  .tour-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* assets/css/style.css */
+/* Style cho trang đăng nhập/đăng ký */
+.auth-page {
+  min-height: 80vh; /* Chiều cao tối thiểu */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa; /* Màu nền xám nhẹ */
+  padding: 20px;
+}
+
+.auth-box {
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px; /* Độ rộng tối đa */
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #0d6efd; /* Màu xanh chủ đạo */
+  font-weight: bold;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
